@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PWDF Wholesale Ordering Portal</title>
+
+<style>
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  font-size: 14px;
+}
+header {
+  background: #fff;
+  padding: 12px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 12px;
+}
+
+/* ===== STICKY SEARCH ===== */
+#searchBar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+#smartSearchInput {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* ===== ITEM CARD ===== */
+.item-card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.item-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.item-meta {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+.controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.qty-box {
+  padding: 6px;
+  width: 70px;
+}
+.add-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: #1678ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.added {
+  background: #2ecc71 !important;
+}
+
+/* ===== BOTTOM BAR ===== */
+#summaryPanel {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.summary-btn {
+  background: #ff6a00;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ===== POPUP ===== */
+#summaryPopup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  justify-content: center;
+  align-items: center;
+}
+.summary-box {
+  background: #fff;
+  width: 95%;
+  max-width: 650px;
+  padding: 16px;
+  border-radius: 10px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .item-card { flex-direction: column; }
+  .controls { justify-content: space-between; }
+  .qty-box, .add-btn, .summary-btn {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  PWDF Wholesale Ordering Portal
+  <span style="float:right;">
+    Items: <span id="cartCount">0</span>
+  </span>
+</header>
+
+<div id="searchBar">
+  <div class="container">
+    <input id="smartSearchInput" placeholder="Search name / code / flavour…">
+  </div>
+</div>
+
+<div id="menuContainer" class="container"></div>
+
+<div id="summaryPanel">
+  <div>Items: <span id="cartCountBottom">0</span></div>
+  <button id="submitOrderBtn" class="summary-btn">Review & Submit</button>
+</div>
+
+<div id="summaryPopup">
+  <div class="summary-box">
+    <h3>Customer Details</h3>
+
+    <input id="customerName" placeholder="Customer Name"><br><br>
+    <input id="brandName" placeholder="Brand Name"><br><br>
+    <input id="contactNumber" placeholder="Contact Number"><br><br>
+
+    <h3>Cart</h3>
+    <div id="popupSummary"></div>
+
+    <br>
+    <button onclick="submitWhatsApp()" class="add-btn">WhatsApp</button>
+    <button onclick="submitEmail()" class="add-btn">Email</button>
+    <button onclick="closeSummary()" class="summary-btn">Close</button>
+  </div>
+</div>
+
+<script src="Product.js"></script>
+<script src="script.js.js"></script>
+
+</body>
+</html>
